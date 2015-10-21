@@ -73,11 +73,9 @@ cfg.controller('stepsController', ['$scope', '$location', function ($scope, $loc
 
   $scope.calculate = function () {
     $scope.totalPrice = $scope.selectedValues.color.price + $scope.selectedValues.tech.price;
-    console.log($scope.selectedValues.build);
-
 
     angular.forEach($scope.selectedValues.build, function (value, key, obj) {
-      $scope.totalPrice += obj.price;
+      $scope.totalPrice += parseFloat(value.price);
     });
 
   };
