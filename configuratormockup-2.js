@@ -77,7 +77,6 @@ cfg.controller('stepsController', ['$scope', '$location', function ($scope, $loc
     angular.forEach($scope.selectedValues.build, function (value, key, obj) {
       $scope.totalPrice += parseFloat(value.price);
     });
-
   };
 
   //  $scope.selectedValues = (localStorage.getItem('selectedValues')!==null)?JSON.parse($scope.savedConfigs) : $scope.defaultConfigs;

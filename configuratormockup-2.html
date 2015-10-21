@@ -101,7 +101,7 @@
                 <p class="selector-title" ng-bind="configName"></p>
 
                 <label class="selector-item" ng-repeat="(key, value) in configChoices" ng-class="{chosen:selectedValues.build[configName].title == value.title}">
-                  <input type="radio" value="{{value.title}}" ng-model="selectedValues.build[configName].title" ng-change="calculate()"/>
+                  <input type="radio" ng-value="value" ng-model="selectedValues.build[configName]" ng-change="calculate()"/>
                   <span class="item">{{value.title}}</span>
                   <span class="price">{{value.price | currency}}</span>
                 </label>
