@@ -1,0 +1,358 @@
+/********  Configurator Page **********/
+.container {
+  position: relative;
+}
+.configurator-wrapper {
+  color: #666;
+  position: relative;
+  float: left;
+  width: 100%;
+}
+
+.configurator-header {
+  position: relative;
+  font-size: 24px;
+  width: 100%;
+  max-width: 1170px;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 50px 50px 10px;
+  border-bottom: 1px solid #dfdfdf;
+  background: rgba(255, 255, 255, 0.9);
+  z-index: 10;
+}
+
+.configurator-header.fixed {
+  position: fixed;
+  padding-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  top: 0px;
+  font-size: 16px;
+
+}
+
+.config-total-price {
+  text-align: center;
+  color: #d66214;
+  font-weight: 400;
+  float: right;
+  margin-right: 4%;
+}
+.configurator-content {
+  float: left;
+  width: 100%;
+}
+
+.product-display img {
+  display: block;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  top: 0;
+  width: 420px;
+}
+
+.product-display.fixed {
+  position: fixed;
+}
+.product-display.fixed-end {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+}
+.product-config {
+  padding: 0 5%;
+  position: relative;
+  float: right;
+}
+
+.product-config section {
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 200;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.config-title {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.config-selection {
+  font-weight: 500;
+}
+
+.config-selection span:nth-child(2) {
+  display: block;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.selector-item {
+/*  display: table;*/
+  position: relative;
+  opacity: 1;
+  padding: 20px 40px;
+  margin-bottom: 20px;
+/*  border: 1px solid #d6d6d6;*/
+  border-radius: 5px;
+  height: auto;
+  opacity: 1;
+  box-shadow: 2px 0px 20px 0px #ccc;
+  transition: height 0.25s ease-out;
+}
+
+.selector-item:hover {
+  cursor: pointer;
+}
+
+.selector-item:not(.chosen):hover {
+/*  border: 1px solid #999;*/
+  box-shadow: 0px 0px 2px 0px #333;
+}
+
+.selector-item.active {
+  border: 2px solid #d66214；
+}
+.selector-item .item,
+.selector-item .price{
+/*  display: table-cell;*/
+}
+
+.selector-item .price {
+  color: #666;
+  font-weight: 300;
+}
+.config-memory .selector-item {
+  display: inline-block;
+  text-align: center;
+  width: 30%;
+  margin-left: 0;
+  margin-right: 3%;
+}
+.config-memory .selector-item .item,
+.config-memory .selector-item .price {
+  display: block;
+}
+
+.config-memory .config-selection .selector-item:nth-child(3) {
+  margin-right: 0;
+}
+
+.chosen {
+  border: none;
+  background: rgba(218, 218, 218, 0.35);
+  box-shadow: none;
+}
+
+.chosen:hover {
+
+}
+.config-result {
+  text-align: center;
+  margin-top: 50px;
+}
+.config-summary {
+  padding: 20px;
+  color: rgb(146, 146, 146);
+  font-weight: 300;
+}
+.config-summary span {
+  font-size: 24px;
+}
+.config-add-to-cart button {
+  color: #eee;
+  cursor: pointer;
+  background: #d66214;
+  width: 100%;
+  margin-bottom: 50px;
+}
+.config-add-to-cart button:not([disabled]):hover {
+  background-color: #d33214;
+}
+
+.hidden {
+  height: 0px;
+  padding: 0 auto;
+  margin: 0;
+  opacity: 0;
+  transition: height .2s, opacity .2s;
+  overflow: hidden;
+}
+
+.package-wrapper {
+  width: 100%;
+  height: 600px;
+  float: left;
+}
+
+button:disabled {
+  color: #cfcfcf;
+  background-color: #eee;
+  cursor: auto;
+}
+
+/********** Redesigned Configurator Layout Style ***********/
+
+* {
+  font-family: "Roboto", sans-serif;
+  color: #4f4f4f;
+  box-sizing: border-box;
+}
+
+.config-nav {
+  float: left;
+
+}
+
+.config-nav li {
+  font-size: 14px;
+  list-style: none;
+
+}
+.config-nav li a {
+  display: block;
+  color: #666;
+  text-decoration: none;
+    padding: 25px 10px;
+  width: 80px;
+  border: 2px solid #eeeeee;
+}
+
+.config-view {
+  float: left;
+  width: 500px;
+  padding-left: 20px;
+  border-left: 1px solid #eee;
+}
+
+.step-content>h3 {
+  text-align: center;
+}
+
+/*
+.step-content>h3:before, .step-content>h3:after {
+  content: " ";
+  height: 1px;
+  width: 20px;
+  background: #666;
+}
+*/
+.selector input[type="radio"] {
+  display: none;
+}
+
+
+.selector-done > div:not(.chosen) {
+  display: none;
+}
+.color-selector, .tech-selector {
+  position: relative;
+  float: left;
+  clear: both;
+}
+.color-selector .selector-item, .tech-selector .selector-item {
+  width: 45%;
+  margin: 10px;
+  float: left;
+}
+
+.color-selector .item, .tech-selector .item {
+
+}
+
+label {
+  display: block;
+}
+
+
+.desk-selector .selector-item {
+  width: 400px;
+}
+
+.desk-selector .selector-title {
+  font-size: 22px;
+  padding-left: 24px
+}
+.desk-selector .price {
+  display: inline;
+  position: relative;
+  right: 0;
+  float: right;
+  text-align: right;
+}
+
+.next-btn {
+  display: block;
+
+  padding: 10px 30px;
+  margin: 20px auto;
+  border: none;
+  color: #eee;
+  background-color: #D45A20;
+  cursor: pointer;
+}
+
+/**************Config Output Style *******************/
+
+.config-output {
+  width: 30%;
+  padding: 20px;
+  float: left;
+  position: fixed;
+  right: 0;
+/*  height: 400px;*/
+  background: #eee;
+}
+
+
+/********** End of Redesigned Configurator ***********/
+
+@media screen and (max-width: 768px) {
+  .product-display {
+    position: static;
+  }
+  .product-display.fixed-end {
+    position: static;
+  }
+  .configurator-header {
+    font-size: 20px;
+    padding-top: 30px;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .config-total-price {
+    margin-right: 0;
+  }
+  .selector-item {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1170px) {
+  .container:before {
+    clear: both;
+  }
+  .configurator-header.fixed {
+    top: 0;
+  }
+  .product-display.fixed {
+    top: 96px;
+    transition: top 1s ease;
+  }
+}
+
+@media screen and (min-width: 1171px) {
+  .configurator-header.fixed {
+    top: 96px;
+  }
+  .product-display.fixed {
+    width: 585px;
+    top: 150px;
+  }
+
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Angular Playground</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+  <div>
+    <h1><strong>Part 1</strong></h1>
+    <div ng-controller="HelloController">
+      <h1>Section One</h1>
+      <input type="text" ng-model="greeting.text">
+      <p>{{greeting.text}}, World</p>
+    </div>
+
+    <div ng-controller="CartController">
+      <h1>Section Two</h1>
+      <h2>Your Shopping Cart</h2>
+      <div ng-repeat="item in items">
+        <span>{{item.title}}</span>
+        <input type="text" ng-model="item.quantity">
+        <span>{{item.price | currency}}</span>
+        <span>{{item.quantity * item.price | currency}}</span>
+        <button ng-click="remove($index)">Remove</button>
+      </div>
+
+    </div>
+
+    <div ng-controller="StartUpController">
+      <h1>Section Three</h1>
+      <form action="">
+        Starting:
+        <input type="text" ng-change="computeNeeded()" ng-model="funding.startingEstimate"> Recommendation: {{funding.needed}}
+      </form>
+    </div>
+
+    <div ng-controller="StartUpController2">
+      <h1>Section Four</h1>
+      <form action="" ng-submit="requestFunding()">
+        Starting:
+        <input type="text" ng-change="computeNeeded()" ng-model="funding.startingEstimate"> Recommendation: {{needed}}
+        <button>Fund my startup!</button>
+
+      </form>
+    </div>
+
+    <div ng-controller="StudentListController">
+      <h1>Section Five</h1>
+      <ul>
+        <li ng-repeat="student in students">
+          <a href="">{{$index+1 +" "+student.name}}</a>
+        </li>
+      </ul>
+      <button ng-click="insertTom()">Insert Tom</button>
+    </div>
+
+    <div ng-controller="DeathrayMenuController">
+      <h1>Section Six</h1>
+      <button ng-click="toggleMenu()">Toggle Menu</button>
+      <ul ng-show="menuState.show">
+        <li ng-click="stun()">Stun</li>
+        <li ng-click="diaintegrate()">Disintegrate</li>
+        <li ng-click="erase()">Erase From History</li>
+      </ul>
+    </div>
+
+    <div ng-controller="HeaderController">
+      <h1>Section Seven</h1>
+      <div ng-class="{error: isError, warning: isWarning}">{{messageText}}</div>
+      <button ng-click="showError()">Simulate Error</button>
+      <button ng-click="showWarning()">Simulate Warning</button>
+    </div>
+
+
+    <div ng-controller="RestaurantTableController">
+      <h1>Section Eight</h1>
+      <table>
+        <tr ng-repeat="restaurant in directory" ng-click="selectRestaurant($index)" ng-class="{selected: $index==selectedRow}">
+          <td>{{restaurant.name}}</td>
+          <td>{{restaurant.cuisine}}</td>
+        </tr>
+      </table>
+
+    </div>
+
+    <div ng-controller="CartController2">
+      <h1>Section Nine</h1>
+      <h2>Your Shopping Cart</h2>
+      <div ng-repeat="item in items">
+        <span>{{item.title}}</span>
+        <input type="text" ng-model="item.quantity">
+        <span>{{item.price | currency}}</span>
+        <span>{{item.quantity * item.price | currency}}</span>
+        <!--    <button ng-click="remove($index)">Remove</button>-->
+      </div>
+      <div>Total: {{bill.totalCart() | currency}}</div>
+      <div>Discount: {{bill.discount | currency}}</div>
+      <div>Subtotal: {{subtotal() | currency}}</div>
+    </div>
+  </div>
+  <div>
+    <h1><strong>Part 2</strong></h1>
+    <div  ng-controller="HomeController">
+      <h1>{{pageHeading | titleCase}}</h1>
+    </div>
+  </div>
+
+  <script src="http://code.angularjs.org/1.4.7/angular.min.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>

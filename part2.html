@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Part 2</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+  <div ng-app="directiveApp">
+    <h1><strong>Part 2</strong></h1>
+    <div class="loader" ng-controller="MyCtrl">
+      <loader>slide to load</loader>
+    </div>
+<!--
+    <div ng-controller="MyCtrl">
+      <loader howToLoad="loadData()">slide to load</loader>
+    </div>
+-->
+
+    <div>
+      <div class="eater">
+        <eater apple>eat apple</eater>
+      </div>
+      <div class="eater">
+        <eater apple pear>eat apple pear</eater>
+      </div>
+      <div class="eater">
+        <eater apple pear grape>eat apple pear grape</eater>
+      </div>
+    </div>
+
+  </div>
+  <script src="http://code.angularjs.org/1.4.7/angular.min.js"></script>
+  <script src="main2.js"></script>
+</body>
+
+</html>
