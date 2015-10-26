@@ -11,16 +11,25 @@ cfg.config(function ($routeProvider) {
     }).when('/step3', {
       controller: 'step3Controller',
       templateUrl: 'step3.html'
+    }).when('/summary', {
+      controller: 'stepsController',
+      templateUrl: 'summary.html'
     }).otherwise({
-      redirectTo: '/'
+      //      redirectTo: '/'
+      templateUrl: 'step1.html'
     });
 });
 
 cfg.controller('stepsController', ['$scope', '$location', function ($scope, $location) {
   $scope.go = function (path) {
     $location.path(path);
+    if ($scope.step < 4) {
+      $scope.step += 1;
+    } else {
+      //      $scope.step = 1;
+    }
   };
-  $scope.defaultValues = {
+  $scope.defaultConfigs = {
     'color': {
       title: 'White',
       price: 200
@@ -68,24 +77,25 @@ cfg.controller('stepsController', ['$scope', '$location', function ($scope, $loc
     }
   };
   $scope.defaultPrice = 0;
-  $scope.selectedValues = $scope.defaultValues;
+  $scope.selectedConfigs = $scope.defaultConfigs;
   $scope.totalPrice = $scope.defaultPrice;
 
   $scope.calculate = function () {
-    $scope.totalPrice = $scope.selectedValues.color.price + $scope.selectedValues.tech.price;
+    $scope.totalPrice = $scope.selectedConfigs.color.price + $scope.selectedConfigs.tech.price;
 
-    angular.forEach($scope.selectedValues.build, function (value, key, obj) {
+    angular.forEach($scope.selectedConfigs.build, function (value, key, obj) {
       $scope.totalPrice += parseFloat(value.price);
     });
   };
+  $scope.calculate();
+  //  $scope.selectedConfigs = (localStorage.getItem('selectedConfigs')!==null)?JSON.parse($scope.savedConfigs) : $scope.defaultConfigs;
+  //  $scope.savedConfigs = localStorage.getItem('selectedConfigs');
+  //  localStorage.setItem('selectedConfigs', JSON.stringify($scope.selectedConfigs));
 
-  //  $scope.selectedValues = (localStorage.getItem('selectedValues')!==null)?JSON.parse($scope.savedConfigs) : $scope.defaultConfigs;
-  //  $scope.savedConfigs = localStorage.getItem('selectedValues');
-  //  localStorage.setItem('selectedValues', JSON.stringify($scope.selectedValues));
-  //
 }]);
 
 cfg.controller('step1Controller', ['$scope', function ($scope) {
+
   $scope.items = [
     {
       title: 'White',

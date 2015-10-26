@@ -221,10 +221,13 @@ button:disabled {
   width: 80px;
   border: 2px solid #eeeeee;
 }
+.config-nav li a.active {
+  background: #eee;
+}
 
 .config-view {
   float: left;
-  width: 500px;
+  width: 600px;
   padding-left: 20px;
   border-left: 1px solid #eee;
 }
@@ -270,7 +273,7 @@ label {
 
 
 .desk-selector .selector-item {
-  width: 400px;
+  width: 100%;
 }
 
 .desk-selector .selector-title {

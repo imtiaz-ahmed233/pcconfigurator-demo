@@ -9,27 +9,28 @@
 
 <body>
 
-  <section class="config-wrapper" ng-init="step = 1" ng-controller="stepsController">
+  <section class="config-wrapper" ng-controller="stepsController">
     <ul class="config-nav">
-      <li><a href="#/step1" ng-click="step = 1">STEP 1</a></li>
-      <li><a href="#/step2" ng-click="step = 2">STEP 2</a></li>
-      <li><a href="#/step3" ng-click="step = 3">STEP 3</a></li>
+      <li><a href="#/step1" ng-click="step = 1" ng-class="{active:step==1}">STEP 1</a></li>
+      <li><a href="#/step2" ng-click="step = 2" ng-class="{active:step==2}">STEP 2</a></li>
+      <li><a href="#/step3" ng-click="step = 3" ng-class="{active:step==3}">STEP 3</a></li>
     </ul>
 
     <div class="config-view" ng-view></div>
+<!--
     <div class="config-output">
       <h3>Configurations</h3>
       <div>
         <div>
-          Color: <span ng-bind="selectedValues.color.title"></span>
+          Color: <span ng-bind="selectedConfigs.color.title"></span>
         </div>
         <div>
-          Tech: <span ng-bind="selectedValues.tech.title"></span>
+          Tech: <span ng-bind="selectedConfigs.tech.title"></span>
         </div>
         <div>
           Settings:
           <div>
-            <p ng-repeat="(key, value) in selectedValues.build">
+            <p ng-repeat="(key, value) in selectedConfigs.build">
               <span ng-bind="key"></span>: <span ng-bind="value.title"></span>
             </p>
           </div>
@@ -37,8 +38,8 @@
 
         <p>Total Price: <span ng-bind="totalPrice | currency"></span></p>
       </div>
-
     </div>
+-->
 
     <script type="text/ng-template" id="step1.html">
       <div class="step-wrapper" ng-controller="step1Controller">
@@ -46,14 +47,14 @@
           <h3>Choose Your Color&amp;Design</h3>
           <div class="content-wrapper">
             <div class="selector color-selector">
-              <label class="selector-item" ng-repeat="(key, value) in items" ng-class="{chosen: selectedValues.color.title == value.title}">
+              <label class="selector-item" ng-repeat="(key, value) in items" ng-class="{chosen: selectedConfigs.color.title == value.title}">
                 <img src="http://placehold.it/80x80" alt="color and design"> {{value.title}}:
-                <input name="color" type="radio" ng-value="value" ng-model="selectedValues.color" ng-change="calculate()"/>
+                <input name="color" type="radio" ng-value="value" ng-model="selectedConfigs.color" ng-change="calculate()"/>
                 <p ng-bind="value.price|currency"></p>
               </label>
             </div>
 
-            <button class="btn next-btn" ng-disabled="!selectedValues.color" ng-click="go('/step2')">
+            <button class="btn next-btn" ng-disabled="!selectedConfigs.color" ng-click="go('/step2')">
               Next
             </button>
           </div>
@@ -69,8 +70,8 @@
           <h3>Choose Your Technology</h3>
           <div class="content-wrapper">
             <div class="selector tech-selector">
-              <label class="selector-item" ng-repeat="(key, value) in items" ng-class="{chosen:selectedValues.tech.title == value.title}">
-                <input type="radio" ng-value="value" ng-model="selectedValues.tech" ng-change="calculate()"/>
+              <label class="selector-item" ng-repeat="(key, value) in items" ng-class="{chosen:selectedConfigs.tech.title == value.title}">
+                <input type="radio" ng-value="value" ng-model="selectedConfigs.tech" ng-change="calculate()"/>
                 <div class="item">
                   <img src="http://placehold.it/80x80" alt="technology">
                   <h4 ng-bind="value.title"></h4>
@@ -81,7 +82,7 @@
                 </div>
               </label>
             </div>
-            <button class="btn next-btn" ng-disabled="!selectedValues.tech.title" ng-click="go('/step3')">
+            <button class="btn next-btn" ng-disabled="!selectedConfigs.tech.title" ng-click="go('/step3')">
               Next
             </button>
           </div>
@@ -91,7 +92,7 @@
 
 
     <script type="text/ng-template" id="step3.html">
-      <div class="step-wrapper" ng-controller="step3Controller">
+      <div class="step-wrapper" ng-controller="step3Controller" ng-init="step=3">
 
         <div class="step-content">
           <h3>Build Your Desktop</h3>
@@ -100,18 +101,42 @@
               <div class="selector" ng-repeat="(configName, configChoices) in items" ng-class="{'selector-done': isDone}">
                 <p class="selector-title" ng-bind="configName"></p>
 
-                <label class="selector-item" ng-repeat="(key, value) in configChoices" ng-class="{chosen:selectedValues.build[configName].title == value.title}">
-                  <input type="radio" ng-value="value" ng-model="selectedValues.build[configName]" ng-change="calculate()"/>
+                <label class="selector-item" ng-repeat="(key, value) in configChoices" ng-class="{chosen:selectedConfigs.build[configName].title == value.title}">
+                  <input type="radio" ng-value="value" ng-model="selectedConfigs.build[configName]" ng-change="calculate()"/>
                   <span class="item">{{value.title}}</span>
                   <span class="price">{{value.price | currency}}</span>
                 </label>
 
               </div>
             </div>
-            <button class="btn next-btn" ng-disabled="!isDone" ng-click="go('/step1')">
+            <button class="btn next-btn" ng-disabled="!isDone" ng-click="go('/summary')">
               Next
             </button>
           </div>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/ng-template" id="summary.html">
+      <div class="config-view">
+        <h3>Configurations</h3>
+        <div>
+          <div>
+            Color: <span ng-bind="selectedConfigs.color.title"></span>
+          </div>
+          <div>
+            Tech: <span ng-bind="selectedConfigs.tech.title"></span>
+          </div>
+          <div>
+            Settings:
+            <div>
+              <p ng-repeat="(key, value) in selectedConfigs.build">
+                <span ng-bind="key"></span>: <span ng-bind="value.title"></span>
+              </p>
+            </div>
+          </div>
+
+          <p>Total Price: <span ng-bind="totalPrice | currency"></span></p>
         </div>
       </div>
     </script>
