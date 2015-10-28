@@ -122,21 +122,21 @@
         <h3>Configurations</h3>
         <div>
           <div>
-            Color: <span ng-bind="selectedConfigs.color.title"></span>
+            Color: <span ng-bind="$parent.selectedConfigs.color.title"></span>
           </div>
           <div>
-            Tech: <span ng-bind="selectedConfigs.tech.title"></span>
+            Tech: <span ng-bind="$parent.selectedConfigs.tech.title"></span>
           </div>
           <div>
             Settings:
             <div>
-              <p ng-repeat="(key, value) in selectedConfigs.build">
+              <p ng-repeat="(key, value) in $parent.selectedConfigs.build">
                 <span ng-bind="key"></span>: <span ng-bind="value.title"></span>
               </p>
             </div>
           </div>
 
-          <p>Total Price: <span ng-bind="totalPrice | currency"></span></p>
+          <p>Total Price: <span ng-bind="$parent.totalPrice | currency"></span></p>
         </div>
       </div>
     </script>
