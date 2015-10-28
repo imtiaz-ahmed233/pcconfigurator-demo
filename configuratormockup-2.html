@@ -9,37 +9,14 @@
 
 <body>
 
-  <section class="config-wrapper" ng-controller="stepsController">
+  <section class="config-wrapper" ng-controller="stepsController" ng-init="step=1">
     <ul class="config-nav">
-      <li><a href="#/step1" ng-click="step = 1" ng-class="{active:step==1}">STEP 1</a></li>
-      <li><a href="#/step2" ng-click="step = 2" ng-class="{active:step==2}">STEP 2</a></li>
-      <li><a href="#/step3" ng-click="step = 3" ng-class="{active:step==3}">STEP 3</a></li>
+      <li><a ui-sref-active="active" ui-sref="step1">STEP 1</a></li>
+      <li><a ui-sref-active="active" ui-sref="step2">STEP 2</a></li>
+      <li><a ui-sref-active="active" ui-sref="step3">STEP 3</a></li>
     </ul>
 
-    <div class="config-view" ng-view></div>
-<!--
-    <div class="config-output">
-      <h3>Configurations</h3>
-      <div>
-        <div>
-          Color: <span ng-bind="selectedConfigs.color.title"></span>
-        </div>
-        <div>
-          Tech: <span ng-bind="selectedConfigs.tech.title"></span>
-        </div>
-        <div>
-          Settings:
-          <div>
-            <p ng-repeat="(key, value) in selectedConfigs.build">
-              <span ng-bind="key"></span>: <span ng-bind="value.title"></span>
-            </p>
-          </div>
-        </div>
-
-        <p>Total Price: <span ng-bind="totalPrice | currency"></span></p>
-      </div>
-    </div>
--->
+    <div class="config-view" ui-view></div>
 
     <script type="text/ng-template" id="step1.html">
       <div class="step-wrapper" ng-controller="step1Controller">
@@ -54,9 +31,9 @@
               </label>
             </div>
 
-            <button class="btn next-btn" ng-disabled="!selectedConfigs.color" ng-click="go('/step2')">
+            <a ui-sref="step2" class="btn next-btn" ng-disabled="!selectedConfigs.color">
               Next
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -82,9 +59,9 @@
                 </div>
               </label>
             </div>
-            <button class="btn next-btn" ng-disabled="!selectedConfigs.tech.title" ng-click="go('/step3')">
+            <a ui-sref="step3" class="btn next-btn" ng-disabled="!selectedConfigs.tech.title" >
               Next
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -92,7 +69,7 @@
 
 
     <script type="text/ng-template" id="step3.html">
-      <div class="step-wrapper" ng-controller="step3Controller" ng-init="step=3">
+      <div class="step-wrapper" ng-controller="step3Controller">
 
         <div class="step-content">
           <h3>Build Your Desktop</h3>
@@ -109,9 +86,9 @@
 
               </div>
             </div>
-            <button class="btn next-btn" ng-disabled="!isDone" ng-click="go('/summary')">
+            <a ui-sref="summary" class="btn next-btn" ng-disabled="!isDone">
               Next
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -145,8 +122,13 @@
 
 
 
+<!--
   <script src="http://code.angularjs.org/1.4.7/angular.min.js"></script>
-  <script src="http://code.angularjs.org/1.4.7/angular-route.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+-->
+<!--  <script src="http://code.angularjs.org/1.4.7/angular-route.min.js"></script>-->
+  <script src="angular.min.js"></script>
+  <script src="angular-ui-router.min.js"></script>
   <script src="configuratormockup-2.js"></script>
   <!--
   <script>

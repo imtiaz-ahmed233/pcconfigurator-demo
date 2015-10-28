@@ -1,23 +1,29 @@
-var cfg = angular.module('configurator', ['ngRoute']);
+var cfg = angular.module('configurator', ['ui.router']);
 
-cfg.config(function ($routeProvider) {
-  $routeProvider
-    .when('/step1', {
-      controller: 'step1Controller',
-      templateUrl: 'step1.html'
-    }).when('/step2', {
-      controller: 'step2Controller',
-      templateUrl: 'step2.html'
-    }).when('/step3', {
-      controller: 'step3Controller',
-      templateUrl: 'step3.html'
-    }).when('/summary', {
-      controller: 'stepsController',
-      templateUrl: 'summary.html'
-    }).otherwise({
-      //      redirectTo: '/'
-      templateUrl: 'step1.html'
+cfg.config(function ($stateProvider, $urlRouterProvider) {
+  $stateProvider
+    .state('step1', {
+      url: '/step1',
+      templateUrl: 'step1.html',
+      controller: 'step1Controller'
+    })
+    .state('step2', {
+      url: '/step2',
+      templateUrl: 'step2.html',
+      controller: 'step2Controller'
+    })
+    .state('step3', {
+      url: '/step3',
+      templateUrl: 'step3.html',
+      controller: 'step3Controller'
+    })
+    .state('summary', {
+      url: '/summary',
+      templateUrl: 'summary.html',
+      controller: 'stepsController'
     });
+
+  $urlRouterProvider.otherwise('/step1');
 });
 
 cfg.controller('stepsController', ['$scope', '$location', function ($scope, $location) {
@@ -25,10 +31,9 @@ cfg.controller('stepsController', ['$scope', '$location', function ($scope, $loc
     $location.path(path);
     if ($scope.step < 4) {
       $scope.step += 1;
-    } else {
-      //      $scope.step = 1;
-    }
+    } else {}
   };
+
   $scope.defaultConfigs = {
     'color': {
       title: 'White',
