@@ -156,7 +156,7 @@
   margin-top: 50px;
 }
 .config-summary {
-  padding: 20px;
+/*  padding: 20px;*/
   color: rgb(146, 146, 146);
   font-weight: 300;
 }
@@ -203,6 +203,10 @@ button:disabled {
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+}
+
 .config-nav {
   float: left;
 
@@ -227,7 +231,7 @@ button:disabled {
 
 .config-view {
   float: left;
-  width: 600px;
+  width: 500px;
   padding-left: 20px;
   border-left: 1px solid #eee;
 }
@@ -257,16 +261,75 @@ button:disabled {
   float: left;
   clear: both;
 }
-.color-selector .selector-item, .tech-selector .selector-item {
-  width: 45%;
-  margin: 10px;
+
+.color-selector .selector-item {
+  width: 25%;
+  float: left;
+  padding: 15px 20px;
+  text-align: center;
+  box-shadow: none;
+}
+
+.color-model {
+  width: 80px;
+  height: 40px;
+}
+.color-selector .black {
+  background-color: #3E3E37;
+}
+.color-selector .red {
+  background-color: #C13D3D;
+}
+.color-selector .green {
+  background-color: #7EC77E;
+}
+.color-selector .yellow {
+  background-color: #FDCE2C;
+}
+
+.tech-selector .selector-item {
+  width: 100%;
   float: left;
 }
-
-.color-selector .item, .tech-selector .item {
+.tech-selector .tech-sum {
+  float: left;
+  width: 40%;
+  text-align: center;
+}
+.tech-selector .tech-sum img {
+  margin-top: 15px;
+}
+.tech-selector .tech-detail {
+  float: left;
+  margin-left: 10%;
+  width: 50%;
+}
+.tech-selector .tech-detail p {
+  font-size: 14px;
+  font-weight: 300;
+  margin-top: 0px;
+  margin-bottom: 0px;
 
 }
+.tech-selector .tech-detail .tech-key {
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+.data-left, .data-right {
+  display: inline-block;
+  line-height: 1.2em;
+}
 
+.data-left {
+
+  width: 40%;
+}
+.data-right {
+text-align: right;
+  width: 60%;
+}
 label {
   display: block;
 }
@@ -280,18 +343,24 @@ label {
   font-size: 22px;
   padding-left: 24px
 }
+
+.desk-selector .item {
+  display: inline-block;
+  width: 80%;
+}
 .desk-selector .price {
-  display: inline;
+  display: inline-block;
   position: relative;
   right: 0;
+  width: 20%;
   float: right;
   text-align: right;
 }
 
 .next-btn {
   display: block;
-
-  padding: 10px 30px;
+  float: right;
+  padding: 10px 60px;
   margin: 20px auto;
   border: none;
   color: #eee;
@@ -301,16 +370,56 @@ label {
 
 /**************Config Output Style *******************/
 
-.config-output {
-  width: 30%;
-  padding: 20px;
-  float: left;
-  position: fixed;
-  right: 0;
-/*  height: 400px;*/
-  background: #eee;
+.config-summary-wrapper {
+/*  padding: 20px;*/
+
+}
+.config-summary caption{
+  font-size: 20px;
+  margin: 20px auto;
 }
 
+.config-summary th {
+  font-weight: 700;
+  text-align: left;
+}
+.config-summary td {
+  text-align: right;
+}
+
+.config-summary th, .config-summary td {
+  padding: 10px;
+  background-color: #f5f5f5;
+  line-height: 1.5em;
+  border: 2px solid #fff;
+}
+
+.config-summary > div {
+    padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 20px;
+  background-color: #f5f5f5;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.6em;
+}
+.config-summary > div p {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.config-summary span {
+  font-size: 14px;
+  font-weight: 300;
+}
+.config-summary .data-left {
+/*  font-weight: 700;*/
+  width: 30%;
+}
+.config-summary .data-right {
+  text-align: right;
+  width: 65%;
+}
 
 /********** End of Redesigned Configurator ***********/
 

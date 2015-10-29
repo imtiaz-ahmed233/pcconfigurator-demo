@@ -36,7 +36,7 @@ cfg.controller('stepsController', ['$scope', '$location', function ($scope, $loc
 
   $scope.defaultConfigs = {
     'color': {
-      title: 'White',
+      title: 'Black',
       price: 200
     },
     'tech': {
@@ -103,7 +103,7 @@ cfg.controller('step1Controller', ['$scope', function ($scope) {
 
   $scope.items = [
     {
-      title: 'White',
+      title: 'Black',
       imgUrl: '',
       price: 200,
       isChosen: false
@@ -145,7 +145,7 @@ cfg.controller('step2Controller', ['$scope', function ($scope) {
   $scope.items = [
     {
       title: 'Intel Z170',
-      imgUrl: '',
+      imgUrl: 'images/IntelZ170.jpg',
       rates: [10, 8, 8, 10, 8],
       details: {
         speed: {
@@ -163,7 +163,7 @@ cfg.controller('step2Controller', ['$scope', function ($scope) {
     },
     {
       title: 'Intel X99',
-      imgUrl: '',
+      imgUrl: 'images/IntelX99.jpg',
       rates: [10, 10, 10, 10, 10],
       details: {
         speed: {
@@ -181,7 +181,7 @@ cfg.controller('step2Controller', ['$scope', function ($scope) {
     },
     {
       title: 'AMD 990FX',
-      imgUrl: '',
+      imgUrl: 'images/AMD990FX.jpg',
       rates: [10, 7, 8, 8, 8],
       details: {
         speed: {

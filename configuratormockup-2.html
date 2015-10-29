@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>Configurator Version 2.0</title>
   <link rel="stylesheet" href="configuratormockup-2.css">
+  <link rel="stylesheet" href="normalize.css">
 </head>
 
 <body>
@@ -18,16 +19,22 @@
 
     <div class="config-view" ui-view></div>
 
+
+    <!--    STEP1.HTML   -->
     <script type="text/ng-template" id="step1.html">
       <div class="step-wrapper" ng-controller="step1Controller">
         <div class="step-content">
           <h3>Choose Your Color&amp;Design</h3>
           <div class="content-wrapper">
             <div class="selector color-selector">
-              <label class="selector-item" ng-repeat="(key, value) in items" ng-class="{chosen: selectedConfigs.color.title == value.title}">
-                <img src="http://placehold.it/80x80" alt="color and design"> {{value.title}}:
-                <input name="color" type="radio" ng-value="value" ng-model="selectedConfigs.color" ng-change="calculate()"/>
-                <p ng-bind="value.price|currency"></p>
+              <label ng-repeat="(key, value) in items" ng-class="{chosen: selectedConfigs.color.title == value.title}"  class="selector-item">
+
+                  <p>{{value.title}}:</p>
+                  <div class="color-model {{value.title|lowercase}}"></div>
+                  <!--                <img src="http://placehold.it/80x80" alt="color and design">-->
+                  <input name="color" type="radio" ng-value="value" ng-model="selectedConfigs.color" ng-change="calculate()" />
+                  <p ng-bind="value.price|currency"></p>
+
               </label>
             </div>
 
@@ -38,8 +45,10 @@
         </div>
       </div>
     </script>
+    <!--    END OF STEP1.HTML   -->
 
 
+    <!--    STEP2.HTML   -->
     <script type="text/ng-template" id="step2.html">
       <div class="step-wrapper" ng-controller="step2Controller">
 
@@ -48,26 +57,41 @@
           <div class="content-wrapper">
             <div class="selector tech-selector">
               <label class="selector-item" ng-repeat="(key, value) in items" ng-class="{chosen:selectedConfigs.tech.title == value.title}">
-                <input type="radio" ng-value="value" ng-model="selectedConfigs.tech" ng-change="calculate()"/>
+                <input type="radio" ng-value="value" ng-model="selectedConfigs.tech" ng-change="calculate()" />
                 <div class="item">
-                  <img src="http://placehold.it/80x80" alt="technology">
-                  <h4 ng-bind="value.title"></h4>
-                  <p ng-bind="value.rates"></p>
-                </div>
-                <div class="price">
-                  <p ng-bind="value.price|currency"></p>
+                  <div class="tech-sum">
+                    <img ng-src={{value.imgUrl}} alt="technology">
+                    <h4 ng-bind="value.title"></h4>
+                    <p class="price" ng-bind="value.price|currency"></p>
+                  </div>
+                  <div class="tech-detail">
+                    <section>
+                      <p class="tech-key">Speed</p>
+                      <!--                      <div ng-bind="value.details.speed">-->
+                      <p ng-repeat="(key, value) in value.details.speed"><span class="data-left" ng-bind="key"></span><span class="data-right" ng-bind="value"></span></p>
+                      <!--                      </div>-->
+                    </section>
+                    <section>
+                      <p class="tech-key">Thermal Design Power</p>
+                      <p ng-bind="value.details.power"></p>
+                    </section>
+                    <section>
+                      <p ng-repeat="(key, value) in value.details.cache"><span class="tech-key data-left" class="tech-key" ng-bind="key"></span><span class="data-right" ng-bind="value"></span></p>
+                    </section>
+                  </div>
                 </div>
               </label>
             </div>
-            <a ui-sref="step3" class="btn next-btn" ng-disabled="!selectedConfigs.tech.title" >
+            <a ui-sref="step3" class="btn next-btn" ng-disabled="!selectedConfigs.tech.title">
               Next
             </a>
           </div>
         </div>
       </div>
     </script>
+    <!--    END OF STEP2.HTML   -->
 
-
+    <!--    STEP3.HTML   -->
     <script type="text/ng-template" id="step3.html">
       <div class="step-wrapper" ng-controller="step3Controller">
 
@@ -79,7 +103,7 @@
                 <p class="selector-title" ng-bind="configName"></p>
 
                 <label class="selector-item" ng-repeat="(key, value) in configChoices" ng-class="{chosen:selectedConfigs.build[configName].title == value.title}">
-                  <input type="radio" ng-value="value" ng-model="selectedConfigs.build[configName]" ng-change="calculate()"/>
+                  <input type="radio" ng-value="value" ng-model="selectedConfigs.build[configName]" ng-change="calculate()" />
                   <span class="item">{{value.title}}</span>
                   <span class="price">{{value.price | currency}}</span>
                 </label>
@@ -93,11 +117,34 @@
         </div>
       </div>
     </script>
+    <!--    END OF STEP3.HTML   -->
 
+    <!--    SUMMARY.HTML   -->
     <script type="text/ng-template" id="summary.html">
-      <div class="config-view">
-        <h3>Configurations</h3>
-        <div>
+      <div class="config-summary-wrapper">
+        <table class="config-summary">
+          <caption>Configuration Summary</caption>
+          <tr>
+            <th>Color:</th>
+            <td ng-bind="$parent.selectedConfigs.color.title"></td>
+          </tr>
+          <tr>
+            <th>Tech:</th>
+            <td ng-bind="$parent.selectedConfigs.tech.title"></td>
+          </tr>
+          <tr ng-repeat="(key, value) in $parent.selectedConfigs.build">
+            <th ng-bind="key">:</th>
+            <td ng-bind="value.title"></td>
+          </tr>
+          <tr>
+            <th>Total Price: </th>
+            <td ng-bind="$parent.totalPrice | currency"></td>
+          </tr>
+        </table>
+
+<!--
+        <h3>Configuration Summary</h3>
+        <div class="config-summary">
           <div>
             Color: <span ng-bind="$parent.selectedConfigs.color.title"></span>
           </div>
@@ -108,25 +155,26 @@
             Settings:
             <div>
               <p ng-repeat="(key, value) in $parent.selectedConfigs.build">
-                <span ng-bind="key"></span>: <span ng-bind="value.title"></span>
+                <span class="data-left" ng-bind="key"></span>: <span class="data-right" ng-bind="value.title"></span>
               </p>
             </div>
           </div>
 
-          <p>Total Price: <span ng-bind="$parent.totalPrice | currency"></span></p>
+          <div>Total Price: <span ng-bind="$parent.totalPrice | currency"></span></div>
         </div>
+-->
       </div>
     </script>
-
+    <!--    END OF SUMMARY.HTML   -->
   </section>
 
 
 
-<!--
+  <!--
   <script src="http://code.angularjs.org/1.4.7/angular.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
 -->
-<!--  <script src="http://code.angularjs.org/1.4.7/angular-route.min.js"></script>-->
+  <!--  <script src="http://code.angularjs.org/1.4.7/angular-route.min.js"></script>-->
   <script src="angular.min.js"></script>
   <script src="angular-ui-router.min.js"></script>
   <script src="configuratormockup-2.js"></script>
