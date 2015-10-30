@@ -9,8 +9,10 @@
 </head>
 
 <body>
-
-  <section class="config-wrapper" ng-controller="stepsController" ng-init="step=1">
+  <section class="product-display">
+    <img src="images/detail_large01.png" alt="">
+  </section>
+  <section class="product-config-wrapper" ng-controller="stepsController" ng-init="step=1">
     <ul class="config-nav">
       <li><a ui-sref-active="active" ui-sref="step1">STEP 1</a></li>
       <li><a ui-sref-active="active" ui-sref="step2">STEP 2</a></li>
@@ -141,28 +143,6 @@
             <td ng-bind="$parent.totalPrice | currency"></td>
           </tr>
         </table>
-
-<!--
-        <h3>Configuration Summary</h3>
-        <div class="config-summary">
-          <div>
-            Color: <span ng-bind="$parent.selectedConfigs.color.title"></span>
-          </div>
-          <div>
-            Tech: <span ng-bind="$parent.selectedConfigs.tech.title"></span>
-          </div>
-          <div>
-            Settings:
-            <div>
-              <p ng-repeat="(key, value) in $parent.selectedConfigs.build">
-                <span class="data-left" ng-bind="key"></span>: <span class="data-right" ng-bind="value.title"></span>
-              </p>
-            </div>
-          </div>
-
-          <div>Total Price: <span ng-bind="$parent.totalPrice | currency"></span></div>
-        </div>
--->
       </div>
     </script>
     <!--    END OF SUMMARY.HTML   -->
