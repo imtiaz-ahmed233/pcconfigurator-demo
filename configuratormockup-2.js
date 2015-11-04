@@ -15,7 +15,8 @@ cfg.config(function ($stateProvider, $urlRouterProvider) {
     .state('step3', {
       url: '/step3',
       templateUrl: 'step3.html',
-      controller: 'step3Controller'
+      controller: 'step3Controller',
+
     })
     .state('summary', {
       url: '/summary',
@@ -25,7 +26,25 @@ cfg.config(function ($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise('/step1');
 });
-
+//cfg.directive('setSticky', function ($window) {
+//    var $win = angular.element($window); // wrap window object as jQuery object
+//
+//    return {
+//        restrict: 'A',
+//        link: function (scope, element, attrs) {
+//            var topClass = attrs.setClassWhenAtTop, // get CSS class from directive's attribute value
+//                offsetTop = element.offset().top; // get element's top relative to the document
+//
+//            $win.on('scroll', function (e) {
+//                if ($win.scrollTop() >= offsetTop) {
+//                    element.addClass(topClass);
+//                } else {
+//                    element.removeClass(topClass);
+//                }
+//            });
+//        }
+//    };
+//});
 cfg.controller('stepsController', ['$scope', '$location', function ($scope, $location) {
   $scope.go = function (path) {
     $location.path(path);

@@ -29,7 +29,6 @@
   margin-right: auto;
   top: 0px;
   font-size: 16px;
-
 }
 
 .config-total-price {
@@ -61,6 +60,7 @@
   bottom: 40px;
   left: 0;
 }
+/*
 .product-config {
   padding: 0 5%;
   position: relative;
@@ -74,11 +74,13 @@
   margin-top: 40px;
   margin-bottom: 40px;
 }
+*/
 
 .config-title {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+/*
 
 .config-selection {
   font-weight: 500;
@@ -90,6 +92,7 @@
   font-size: 16px;
   font-weight: 500;
 }
+*/
 
 .selector-item {
 /*  display: table;*/
@@ -126,6 +129,7 @@
   color: #666;
   font-weight: 300;
 }
+/*
 .config-memory .selector-item {
   display: inline-block;
   text-align: center;
@@ -141,6 +145,7 @@
 .config-memory .config-selection .selector-item:nth-child(3) {
   margin-right: 0;
 }
+*/
 
 .chosen {
   border: none;
@@ -148,21 +153,19 @@
   box-shadow: none;
 }
 
-.chosen:hover {
 
-}
-.config-result {
-  text-align: center;
-  margin-top: 50px;
-}
+
+/*
 .config-summary {
-/*  padding: 20px;*/
+  padding: 20px;
   color: rgb(146, 146, 146);
   font-weight: 300;
 }
 .config-summary span {
   font-size: 24px;
 }
+*/
+/*
 .config-add-to-cart button {
   color: #eee;
   cursor: pointer;
@@ -173,6 +176,7 @@
 .config-add-to-cart button:not([disabled]):hover {
   background-color: #d33214;
 }
+*/
 
 .hidden {
   height: 0px;
@@ -183,11 +187,7 @@
   overflow: hidden;
 }
 
-.package-wrapper {
-  width: 100%;
-  height: 600px;
-  float: left;
-}
+
 
 button:disabled {
   color: #cfcfcf;
@@ -207,6 +207,23 @@ a {
   text-decoration: none;
 }
 
+.product-display {
+  width: 35%;
+  float: left;
+}
+.product-display img {
+  display: block;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  top: 0;
+  width: 300px;
+}
+
+.product-config-wrapper {
+  width: 65%;
+  float: left;
+}
 .config-nav {
   float: left;
 
@@ -221,9 +238,13 @@ a {
   display: block;
   color: #666;
   text-decoration: none;
-    padding: 25px 10px;
+  padding: 25px 10px;
   width: 80px;
-  border: 2px solid #eeeeee;
+  border-left: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+.config-nav li:nth-child(1) a{
+  border-top: 1px solid #eee;
 }
 .config-nav li a.active {
   background: #eee;
@@ -368,7 +389,35 @@ label {
   cursor: pointer;
 }
 
-/**************Config Output Style *******************/
+.sticky-img {
+  position: fixed;
+  top: 150px;
+}
+
+/************** Fixed Header, Image, Nav *******************/
+.top-part {
+  height: 300px;
+  width: 100%;
+  text-align: center;
+/*  background-color: #eee;*/
+  z-index: 1;
+}
+.top-part , .config-nav, .product-display {
+  position: fixed;
+}
+.product-config-wrapper {
+  margin-left: 45%;
+  margin-top: 50px;
+}
+.product-display, .product-config-wrapper {
+  margin-top: 300px;
+}
+.config-nav {
+  margin-left: -120px;
+}
+
+
+/************** Config Output Style *******************/
 
 .config-summary-wrapper {
 /*  padding: 20px;*/
