@@ -110,7 +110,7 @@
                 <label class="selector-item" ng-repeat="(key, value) in configChoices" ng-class="{chosen:selectedConfigs.build[configName].title == value.title}">
                   <input type="radio" ng-value="value" ng-model="selectedConfigs.build[configName]" ng-change="calculate()" />
                   <span class="item">{{value.title}}</span>
-                  <span class="price">{{value.price | currency}}</span>
+                  <span class="price">{{value.price - $parent.selectedConfigs.build[configName].price | currency}}</span>
                 </label>
 
               </div>
